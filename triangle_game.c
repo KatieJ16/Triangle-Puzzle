@@ -156,6 +156,7 @@ int solve(int board[]) {
         return 0; /* Not solvable with no pegs. */
     }
     if(npegs(board) == 1) {
+        triangle_print(board);
         return 1; /* Solved with only one pegs. */
     }
 
@@ -165,6 +166,7 @@ int solve(int board[]) {
             board_solvable = solve(board);
             unmake_move(board, moves[move_index]);
             if(board_solvable == 1) {
+                triangle_print(board);
                 return 1;
             }
         }
