@@ -1,3 +1,10 @@
+/* Triangle Game
+ * This program will take a given placement of pes for the triangle game 
+ * and determine if it can be solved.
+ * The user will follow the given directions to input the pegs.
+ * The program will print whether or not the board can possibly be solved. 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -68,10 +75,11 @@ int unmake_move(int board[], int move[]);
  */
 int solve(int board[]);
 
+/* This function counts the number of pegs left on the board.
+ * Input is the current board.
+ * The output is an int with the number of pegs. 
+ */
 int npegs(int board[]) {
-    /* This function counts the number of pegs left on the board.
-     * Input is the current board.
-     * The output is an int with the number of pegs. */
     int i = 0;
     int pegs = 0;
 
@@ -83,10 +91,12 @@ int npegs(int board[]) {
     return pegs;
 }
 
+/* Determines if a move is valid.
+ * Input is the current and the move to be tested.
+ * Output is 1 if valid and 0 is not valid. 
+ */
+
 int valid_move(int board[], int move[]) {
-    /* Determines if a move is valid.
-     * Input is the current and the move to be tested.
-     * Output is 1 if valid and 0 is not valid. */
     int start = move[0];
     int jump = move[1];
     int end = move[2];
@@ -103,10 +113,11 @@ int valid_move(int board[], int move[]) {
     return 1; /* when all conditions are ment. */
 }
 
+/* Makes a move.
+ * Input is the current board and the move.
+ */
+
 int make_move(int board[], int move[]) {
-    /* Makes a move.
-     * Input is the current board and the move.
-     */
     int start = move[0];
     int jump = move[1];
     int finish = move[2];
@@ -119,10 +130,10 @@ int make_move(int board[], int move[]) {
     return 0;
 }
 
+/* Unmakes a move.
+ * input is the current board and the move to be reversed.
+ */
 int unmake_move(int board[], int move[]) {
-    /* Unmakes a move.
-     * input is the current board and the move to be reversed.
-     */
     int start = move[0];
     int finish = move[2];
     int jump = move[1];
@@ -132,12 +143,13 @@ int unmake_move(int board[], int move[]) {
     return 0;
 }
 
+/* determines if there is a valid way to solve the puzzle.
+ * Uses recursion.
+ * Input is the board.
+ * Output is 1 is there is a vaild way to solve the board. 0 is not.
+ */
+
 int solve(int board[]) {
-    /* determines if there is a valid way to solve the puzzle.
-     * Uses recursion.
-     * Input is the board.
-     * Output is 1 is there is a vaild way to solve the board. 0 is not.
-     */
     int move_index = 0;
     int board_solvable = 0;
     if(npegs(board) == 0) {
@@ -160,6 +172,7 @@ int solve(int board[]) {
 
     return 0;
 }
+
 int main(int argc, char *argv[]) {
     int board[SPOTS];
     int solvable = 0;
